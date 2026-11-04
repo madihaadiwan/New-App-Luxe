@@ -17,23 +17,73 @@ PHONE_INTL = "923363488291"
 WA_LINK = f"https://wa.me/{PHONE_INTL}?text=" + urllib.parse.quote("Hi Luxe By Madiha, I want to know about your new arrivals.")
 KHAADI_URL = "https://www.khaadi.com/pk/"
 
-st.set_page_config(page_title=f"{BRAND} Manager", page_icon="👗", layout="wide")
-st.title(f"👗 {BRAND} — Business Manager")
-st.caption("Price your stock, track inventory and orders, and write captions, all in one place.")
+# ======================= EDIT THESE (your shop details) =======================
+TAGLINE = "Authentic Khaadi pret, chosen with love."
+INSTAGRAM_URL = ""   # e.g. "https://www.instagram.com/yourpage"  (leave empty to hide)
+FACEBOOK_URL = ""    # e.g. "https://www.facebook.com/yourpage"  (leave empty to hide)
+DELIVERY_INFO = "Delivery time and charges depend on your city or country. Message us on WhatsApp and we will confirm both before you order."
+PAYMENT_INFO = "Message us on WhatsApp to confirm the payment options available for your order."
+RETURN_INFO = "Please message us on WhatsApp before ordering to confirm exchange and return details."
+WHY_US = [
+    ("✅", "Authentic branded stock", "Real Khaadi ready-to-wear pieces."),
+    ("💬", "Easy WhatsApp ordering", "Send a message, we confirm size and availability."),
+    ("📦", "Carefully packed", "Every order is checked and packed with care."),
+]
+CATEGORIES = ["Khaadi Pret", "Festive", "Casual", "Formal"]
+# Add REAL customer reviews only, like: ("Ayesha", "Beautiful suit, exactly as shown!")
+REVIEWS = []
+# ==============================================================================
+
+st.set_page_config(page_title=BRAND, page_icon="👗", layout="wide")
 st.markdown(f"📞 **Contact / WhatsApp:** [{PHONE_LOCAL}]({WA_LINK})")
-st.markdown(
-    f"""
-<a href="{WA_LINK}" target="_blank" title="Chat on WhatsApp"
-   style="position:fixed;bottom:24px;right:24px;z-index:9999;width:56px;height:56px;border-radius:50%;
-          background:#25D366;display:flex;align-items:center;justify-content:center;
-          box-shadow:0 4px 12px rgba(0,0,0,.3);">
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-  </svg>
-</a>
-""",
-    unsafe_allow_html=True,
+WA_SVG = (
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff"><path d="'
+    'M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z'
+    '"/></svg>'
 )
+WA_ICON = "data:image/svg+xml;base64," + base64.b64encode(WA_SVG.encode("utf-8")).decode("ascii")
+WA_BUTTON = (
+    f'<a href="{WA_LINK}" target="_blank" title="Chat on WhatsApp" '
+    'style="position:fixed;bottom:24px;right:24px;z-index:9999;width:56px;height:56px;'
+    'border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;'
+    'box-shadow:0 4px 12px rgba(0,0,0,0.3);">'
+    f'<img src="{WA_ICON}" width="32" height="32" alt="WhatsApp"></a>'
+)
+st.markdown(WA_BUTTON, unsafe_allow_html=True)
+
+HERO = (
+    '<div style="background:linear-gradient(135deg,#F3E6D8,#FFF8F0);border:1px solid #E6D3B8;'
+    'border-radius:16px;padding:32px 24px;text-align:center;margin-bottom:16px;">'
+    '<div style="font-size:13px;letter-spacing:3px;color:#B8860B;">BRANDED READY-TO-WEAR</div>'
+    f'<div style="font-size:40px;font-weight:700;color:#3A2A1E;margin:8px 0;">👗 {BRAND}</div>'
+    f'<div style="font-size:18px;color:#5a4636;">{TAGLINE}</div></div>'
+)
+st.markdown(HERO, unsafe_allow_html=True)
+
+h1, h2, h3, h4 = st.columns(4)
+h1.link_button("💬 Order on WhatsApp", WA_LINK, use_container_width=True)
+h2.link_button("🛍️ Official Khaadi site", KHAADI_URL, use_container_width=True)
+if INSTAGRAM_URL:
+    h3.link_button("📸 Instagram", INSTAGRAM_URL, use_container_width=True)
+if FACEBOOK_URL:
+    h4.link_button("👍 Facebook", FACEBOOK_URL, use_container_width=True)
+
+cols = st.columns(len(WHY_US))
+for col, (icon, title, text) in zip(cols, WHY_US):
+    col.markdown(
+        '<div style="background:#FFFFFF;border:1px solid #E6D3B8;border-radius:12px;padding:16px;'
+        f'text-align:center;height:130px;"><div style="font-size:28px;">{icon}</div>'
+        f'<div style="font-weight:700;color:#3A2A1E;margin-top:4px;">{title}</div>'
+        f'<div style="font-size:14px;color:#5a4636;margin-top:4px;">{text}</div></div>',
+        unsafe_allow_html=True,
+    )
+
+st.markdown("#### Browse by category")
+cat_cols = st.columns(len(CATEGORIES))
+for col, cat in zip(cat_cols, CATEGORIES):
+    cat_link = f"https://wa.me/{PHONE_INTL}?text=" + urllib.parse.quote(f"Hi {BRAND}, I am interested in {cat}.")
+    col.link_button(f"✨ {cat}", cat_link, use_container_width=True)
+st.write("")
 
 
 def empty_orders():
@@ -90,9 +140,9 @@ def load_slides():
     for f in sorted(set(files)):
         try:
             img = Image.open(f).convert("RGB")
-            img.thumbnail((900, 900))
+            img.thumbnail((600, 600))
             buf = io.BytesIO()
-            img.save(buf, "JPEG", quality=80)
+            img.save(buf, "JPEG", quality=65)
             data = "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
             caption = ""
             slides.append((caption, data))
@@ -126,8 +176,8 @@ def slideshow_html(slides):
 </script>"""
 
 
-tab_new, tab1, tab2, tab3, tab4 = st.tabs(
-    ["🆕 New Arrivals", "💰 Price & Profit", "🧵 Stock", "📦 Orders", "✍️ Caption Maker"]
+tab_new, tab_info, tab_dash, tab1, tab2, tab3, tab4 = st.tabs(
+    ["🆕 New Arrivals", "ℹ️ Info & FAQ", "📊 Dashboard", "💰 Price & Profit", "🧵 Stock", "📦 Orders", "✍️ Caption Maker"]
 )
 
 # ---------------- Tab 0: New Arrivals slideshow ----------------
@@ -144,6 +194,17 @@ with tab_new:
     b1, b2 = st.columns(2)
     b1.link_button("🛍️ See official Khaadi website", KHAADI_URL, use_container_width=True)
     b2.link_button("💬 Order on WhatsApp", WA_LINK, use_container_width=True)
+    if REVIEWS:
+        st.markdown("#### What our customers say")
+        rc = st.columns(min(len(REVIEWS), 3))
+        for i, (who, text) in enumerate(REVIEWS):
+            rc[i % len(rc)].markdown(
+                '<div style="background:#FFFFFF;border:1px solid #E6D3B8;border-radius:12px;padding:14px;'
+                f'margin-bottom:10px;"><div style="color:#B8860B;">★★★★★</div>'
+                f'<div style="color:#3A2A1E;margin:6px 0;">{text}</div>'
+                f'<div style="font-size:13px;color:#5a4636;">— {who}</div></div>',
+                unsafe_allow_html=True,
+            )
 
 # ---------------- Tab 1: Price & Profit ----------------
 with tab1:
@@ -309,3 +370,70 @@ with tab4:
             if wa:
                 msg = urllib.parse.quote(f"Hi {BRAND}, I want to order: {name}{col}")
                 st.link_button("Test WhatsApp order link", f"https://wa.me/{wa}?text={msg}")
+
+
+# ---------------- Info & FAQ ----------------
+with tab_info:
+    st.subheader("Delivery, payment and returns")
+    st.markdown(f"**🚚 Delivery:** {DELIVERY_INFO}")
+    st.markdown(f"**💳 Payment:** {PAYMENT_INFO}")
+    st.markdown(f"**🔁 Returns and exchange:** {RETURN_INFO}")
+
+    st.subheader("Size guide")
+    st.write(
+        "Sizes can differ between styles. For the best fit, measure yourself and send us the numbers on WhatsApp. "
+        "We will confirm the right size before you order."
+    )
+    st.markdown(
+        "- **Bust:** measure around the fullest part, keeping the tape level.\n"
+        "- **Waist:** measure around the narrowest part.\n"
+        "- **Hips:** measure around the fullest part.\n"
+        "- **Shirt length:** from the top of the shoulder down to where you want the hem."
+    )
+    size_msg = urllib.parse.quote(f"Hi {BRAND}, I need help choosing a size. My measurements: bust __, waist __, hips __, length __.")
+    st.link_button("📏 Send my measurements on WhatsApp", f"https://wa.me/{PHONE_INTL}?text={size_msg}")
+
+    st.subheader("Frequently asked questions")
+    with st.expander("How do I place an order?"):
+        st.write("Send us a message on WhatsApp with the photo of the piece you like and your size. We confirm availability, price and delivery, then you confirm your order.")
+    with st.expander("Are the pieces original?"):
+        st.write("We sell genuine branded ready-to-wear stock.")
+    with st.expander("What if my size is not shown?"):
+        st.write("Message us on WhatsApp. Stock changes often, so we will check what is available.")
+    with st.expander("How long does delivery take?"):
+        st.write(DELIVERY_INFO)
+    with st.expander("How can I pay?"):
+        st.write(PAYMENT_INFO)
+    with st.expander("Can I return or exchange?"):
+        st.write(RETURN_INFO)
+
+# ---------------- Dashboard ----------------
+with tab_dash:
+    st.subheader("Your shop at a glance")
+    d_orders = st.session_state["orders"]
+    d_stock = st.session_state["stock"]
+    if len(d_orders) == 0 and len(d_stock) == 0:
+        st.info("Add items in the Stock tab and orders in the Orders tab. This page will summarise them for you.")
+    else:
+        live = d_orders[~d_orders["Status"].isin(["Cancelled", "Returned"])] if len(d_orders) else d_orders
+        today_orders = live[live["Date"] == str(date.today())] if len(live) else live
+        to_ship = live[live["Status"].isin(["New", "Packed"])] if len(live) else live
+        unpaid = live[live["Paid"] == False] if len(live) else live
+        unpaid_amount = float((unpaid["Qty"] * unpaid["Price"]).sum()) if len(unpaid) else 0.0
+        low_items = d_stock[d_stock["In Stock"] <= LOW_STOCK] if len(d_stock) else d_stock
+
+        g1, g2, g3, g4 = st.columns(4)
+        g1.metric("Orders today", len(today_orders))
+        g2.metric("To pack / ship", len(to_ship))
+        g3.metric("Payments pending", f"Rs {unpaid_amount:,.0f}")
+        g4.metric("Low stock items", len(low_items))
+
+        if len(unpaid):
+            st.markdown("**Customers with pending payment**")
+            show = unpaid[["Customer", "Phone", "Product", "Qty", "Price"]].copy()
+            show["Amount"] = show["Qty"] * show["Price"]
+            st.dataframe(show, use_container_width=True, hide_index=True)
+        if len(low_items):
+            st.markdown("**Low or finished stock**")
+            st.dataframe(low_items[["Product", "Brand", "Size", "Colour", "In Stock"]], use_container_width=True, hide_index=True)
+    st.caption("Your data lives only in this browser session. Download your CSV files from the Stock and Orders tabs to keep them.")
