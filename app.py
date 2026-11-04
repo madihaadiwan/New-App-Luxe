@@ -94,7 +94,7 @@ def load_slides():
             buf = io.BytesIO()
             img.save(buf, "JPEG", quality=80)
             data = "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
-            caption = f.split("/")[-1].rsplit(".", 1)[0].replace("_", " ").replace("-", " ")
+            caption = ""
             slides.append((caption, data))
         except Exception:
             continue
