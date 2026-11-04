@@ -192,7 +192,7 @@ with tab_new:
             "photos of your own stock (jpg or png). They will start playing here as a slideshow."
         )
     b1, b2 = st.columns(2)
-    b1.link_button("🛍️ See official Khaadi website", KHAADI_URL, use_container_width=True)
+    
     b2.link_button("💬 Order on WhatsApp", WA_LINK, use_container_width=True)
     if REVIEWS:
         st.markdown("#### What our customers say")
