@@ -85,7 +85,7 @@ def csv_restore(key, label, empty_fn, bool_cols=()):
 def load_slides():
     files = []
     for ext in ("jpg", "jpeg", "png", "webp", "JPG", "JPEG", "PNG", "WEBP"):
-        files += glob.glob(f"images/*.{ext}")
+        files += glob.glob(f"images/*.{ext}") + glob.glob(f"*.{ext}")
     slides = []
     for f in sorted(set(files)):
         try:
