@@ -19,8 +19,8 @@ KHAADI_URL = "https://www.khaadi.com/pk/"
 
 # ======================= EDIT THESE (your shop details) =======================
 TAGLINE = "Authentic Khaadi pret, chosen with love."
-INSTAGRAM_URL = ""   # e.g. "https://www.instagram.com/yourpage"  (leave empty to hide)
-FACEBOOK_URL = ""    # e.g. "https://www.facebook.com/yourpage"  (leave empty to hide)
+INSTAGRAM_URL = "https://www.instagram.com/luxebymadihaa/"
+FACEBOOK_URL = "https://www.facebook.com/madisonlinestore"
 DELIVERY_INFO = "Delivery time and charges depend on your city or country. Message us on WhatsApp and we will confirm both before you order."
 PAYMENT_INFO = "Message us on WhatsApp to confirm the payment options available for your order."
 RETURN_INFO = "Please message us on WhatsApp before ordering to confirm exchange and return details."
