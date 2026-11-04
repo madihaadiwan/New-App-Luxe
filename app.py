@@ -374,10 +374,22 @@ with tab4:
 
 # ---------------- Info & FAQ ----------------
 with tab_info:
-    st.subheader("Delivery, payment and returns")
-    st.markdown(f"**🚚 Delivery:** {DELIVERY_INFO}")
-    st.markdown(f"**💳 Payment:** {PAYMENT_INFO}")
-    st.markdown(f"**🔁 Returns and exchange:** {RETURN_INFO}")
+    DELIVERY_INFO = (
+    "We deliver worldwide. Karachi orders are delivered the same day. "
+    "Orders outside Karachi take 3 to 4 days and are shipped through Leopard Courier. "
+    "Delivery charges depend on your city or country, so message us on WhatsApp and we will confirm them before you order."
+)
+
+PAYMENT_INFO = (
+    "Karachi: Cash on Delivery is available. "
+    "Outside Karachi and outside Pakistan: full advance payment is required via JazzCash, Easypaisa, bank transfer or Raast. "
+    "Message us on WhatsApp for the payment details."
+)
+
+RETURN_INFO = (
+    "Please note that we do not offer returns or exchanges. "
+    "Choose your size carefully and message us on WhatsApp with your measurements before ordering, so we can help you pick the right size."
+)
 
     st.subheader("Size guide")
     st.write(
