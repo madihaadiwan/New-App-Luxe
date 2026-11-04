@@ -62,7 +62,7 @@ st.markdown(HERO, unsafe_allow_html=True)
 
 h1, h2, h3, h4 = st.columns(4)
 h1.link_button("💬 Order on WhatsApp", WA_LINK, use_container_width=True)
-h2.link_button("🛍️ Official Khaadi site", KHAADI_URL, use_container_width=True)
+
 if INSTAGRAM_URL:
     h3.link_button("📸 Instagram", INSTAGRAM_URL, use_container_width=True)
 if FACEBOOK_URL:
